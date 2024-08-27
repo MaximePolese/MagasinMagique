@@ -61,12 +61,13 @@ class MagasinTest {
     }
 
     @Test
-    void kryptonite(){
-        Item[] items = new Item[] { new Item("Kryptonite", -1, 80) };
+    void kryptonite() {
+        Item[] items = new Item[]{new Item("Kryptonite", -1, 80), new Item("Kryptonite", 10, 40)};
         Magasin app = new Magasin(items);
         app.updateQuality();
         Assertions.assertEquals(-1, items[0].sellIn);
         Assertions.assertEquals(80, items[0].quality);
+        Assertions.assertEquals(80, items[1].quality);
     }
 
     @Test

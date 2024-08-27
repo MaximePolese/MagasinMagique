@@ -1,5 +1,7 @@
 package com.magasin;
 
+import com.magasin.updater.UpdaterFactory;
+
 class Magasin {
     Item[] items;
 
@@ -59,47 +61,53 @@ class Magasin {
 //            }
 //        }
 //    }
+//    public void updateQuality() {
+//        for (Item item : items) {
+//            if (!item.name.equals("Kryptonite")) item.sellIn--;
+//            applyQualityChange(item);
+//
+//            if (item.name.equals("Kryptonite")) continue;
+//
+//            checkValidity(item);
+//        }
+//    }
+//
+//    public void applyQualityChange(Item item) {
+//        switch (item.name) {
+//            case "Comté":
+//                item.quality++;
+//                break;
+//
+//            case "Pass VIP Concert":
+//                if (item.sellIn < 0) item.quality = 0;
+//                else if (item.sellIn < 5) item.quality += 3;
+//                else if (item.sellIn < 10) item.quality += 2;
+//                else item.quality++;
+//                break;
+//
+//            case "Kryptonite":
+//                item.quality = 80;
+//                break;
+//
+//            case "Pouvoirs magiques":
+//                if (item.sellIn >= 0) item.quality--;
+//                else item.quality -= 2;
+//
+//            default:
+//                if (item.sellIn >= 0) item.quality--;
+//                else item.quality -= 2;
+//
+//        }
+//    }
+//
+//    public void checkValidity(Item item) {
+//        if (item.quality < 0) item.quality = 0;
+//        if (item.quality > 50) item.quality = 50;
+//    }
+
     public void updateQuality() {
         for (Item item : items) {
-            if (!item.name.equals("Kryptonite")) item.sellIn--;
-            applyQualityChange(item);
-
-            if (item.name.equals("Kryptonite")) continue;
-
-            checkValidity(item);
+            UpdaterFactory.createItem(item).update(item);
         }
-    }
-
-    public void applyQualityChange(Item item) {
-        switch (item.name) {
-            case "Comté":
-                item.quality++;
-                break;
-
-            case "Pass VIP Concert":
-                if (item.sellIn < 0) item.quality = 0;
-                else if (item.sellIn < 5) item.quality += 3;
-                else if (item.sellIn < 10) item.quality += 2;
-                else item.quality++;
-                break;
-
-            case "Kryptonite":
-                item.quality = 80;
-                break;
-
-            case "Pouvoirs magiques":
-                if (item.sellIn >= 0) item.quality--;
-                else item.quality -= 2;
-
-            default:
-                if (item.sellIn >= 0) item.quality--;
-                else item.quality -= 2;
-
-        }
-    }
-
-    public void checkValidity(Item item) {
-        if (item.quality < 0) item.quality = 0;
-        if (item.quality > 50) item.quality = 50;
     }
 }
